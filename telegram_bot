@@ -1,0 +1,236 @@
+#these are all the imports
+import random
+import telebot
+import webbrowser
+from telebot import types
+
+#these are all the constants, variables, bot data and tokens
+mytoken = (None)
+bot = telebot.TeleBot(mytoken)
+answers = ['open the link','open the link','open the link']
+paypal = (None)#enter ur paypal
+emoji_1 = u"\u2B06\uFE0F"
+
+
+
+
+
+    
+
+#this is the main menu for the telegram menu and guide
+@bot.message_handler(commands=['start'])
+def welcome():
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    button1 = types.KeyboardButton()
+    button2 = types.KeyboardButton()
+    button3 = types.KeyboardButton()
+    markup.row(button1)
+    markup.row(button2, button3)
+
+# this will initialize the bot and get it running 
+    if message.text == '/start':
+        bot.send_message(message.chat.id, "Hey, how can i help you today.", reply_markup=markup)
+    else:
+        bot.send_message(message.chat.id, 'hey, how can i help you', reply_markup=markup)
+
+# this will get the bots reaction after send payment
+@bot.message_handler(content_types='photo')
+def get_photo(message):
+    bot.send_message(message.chat.id, 'alr, the owner will be notified and shall respond shortly.')
+
+#2nd menu will help the user choose between 3 groups
+@bot.message_handler()
+def info(message):
+    if message.text == 'Group_list':
+        product_list(message)
+    elif message.text == '👤Human_assistance':
+        settingsChapter(message)
+    elif message.text =="https://t.me/+Y64J1K4gHgQ1MWU0":
+        bot.send_message(message.chat.id, "click on the link for access to the group")
+    elif message.text == 'Preview_group':
+        infoChapter(message)
+    elif message.text == 'paypal':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton(paypal)
+        button2 = types.KeyboardButton("↩️ back to previous.")
+        markup.row(button1, button2)
+        bot.send_message(message.chat.id, 'the link will redirect you', reply_markup=markup)
+    
+    elif message.text == "↩️ back to previous.":
+        payment_choices(message)
+    elif message.text == '↩️ return to main menu':
+        welcome(message)
+        bot.send_message(message.chat.id, '?')
+    elif message.text == 'group 1':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton('💳 payment')
+        button2 = types.KeyboardButton('↩️ return to main menu')
+        button3 = types.KeyboardButton("ℹ️ info about the group")
+        markup.row(button1,)
+        markup.row(button3, button2)
+        bot.send_message(message.chat.id, 'pick one', reply_markup=markup)
+
+    elif message.text == 'group 2':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton('💳 payment')
+        button2 = types.KeyboardButton('↩️ return to main menu')
+        button3 = types.KeyboardButton("ℹ️ info about the group.")
+        markup.row(button1,)
+        markup.row(button3, button2)
+        bot.send_message(message.chat.id, 'pick one', reply_markup=markup)
+    
+    elif message.text == 'group 4':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton('💳 payment')
+        button2 = types.KeyboardButton('↩️ return to main menu')
+        button3 = types.KeyboardButton("ℹ️ info about the group,")
+        markup.row(button1,)
+        markup.row(button3, button2)
+        bot.send_message(message.chat.id, 'pick one', reply_markup=markup)
+   
+    elif message.text == 'group 4':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton('💳 payment')
+        button2 = types.KeyboardButton('↩️ return to main menu')
+        button3 = types.KeyboardButton("ℹ️ info about the group'")
+        markup.row(button1,)
+        markup.row(button3, button2)
+        bot.send_message(message.chat.id, 'pick one', reply_markup=markup)
+    
+    #HUMAN assistence help bot
+    elif message.text == "https://t.co/CAdC7lybpU":
+        bot.send_message(message.chat.id, "message her for human_assistence")
+    
+    #info about the product 1
+    elif message.text == 'ℹ️ info about the group':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton('💳 access payment.')
+        button2 = types.KeyboardButton('↩️ back to previous')
+        markup.row(button1, button2)
+        bot.send_message(message.chat.id, 'enter ur info', reply_markup=markup)
+    
+    #info bout product 2
+    elif message.text == 'ℹ️ info about the group.':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton('💳 access payment.')
+        button2 = types.KeyboardButton('↩️ back to previous')
+        markup.row(button1, button2)
+        bot.send_message(message.chat.id, 'type ur info', reply_markup=markup)
+    
+    #info about product
+    elif message.text == 'ℹ️ info about the group,':
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton('💳 access payment.')
+        button2 = types.KeyboardButton('↩️ back to previous')
+        markup.row(button1, button2)
+        bot.send_message(message.chat.id, 'type ur info', reply_markup=markup)
+    
+    #Info about group 3
+    elif message.text == "ℹ️ info about the group'":
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+        button1 = types.KeyboardButton('💳 access payment.')
+        button2 = types.KeyboardButton('↩️ back to previous')
+        markup.row(button1, button2)
+        bot.send_message(message.chat.id, 'type ur info', reply_markup=markup)
+    
+    #payment
+    elif message.text == '💳 access payment.':
+        payment_choices(message)
+    elif message.text == '💳 payment':
+        payment_choices(message)
+    elif message.text == '💳 access payment':
+        payment_choices(message)
+        pass
+        webbrowser.open('https://t.me/opopee')
+    elif message.text == '↩️ back to previous':
+        product_list(message)
+    elif paypal in message.text:
+        screenshot_reciever(message)
+    elif message.text == 'ETH':
+        bot.send_message(message.chat.id, "unfortunately this payment method is out of order pick another one")
+    elif message.text == "BTC":
+        bot.send_message(message.chat.id, "bc1qadawhne9g02pjf27a4ahzzr23d93we28t7h7nz")
+        bot.send_message(message.chat.id, f"send the money to this bitcoin address above {emoji_1}")
+    elif message.text == paypal:
+        screenshot_reciever(message)
+    else:
+        bot.send_message(message.chat.id, answers[random.randint(0, 2)])
+
+
+def product_list(message):
+    #this is an product list
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    button1 = types.KeyboardButton('group 1')
+    button2 = types.KeyboardButton('group 2')
+    button3 = types.KeyboardButton('group 4')
+    button4 = types.KeyboardButton('group 5')
+    button5 = types.KeyboardButton('↩️ return to main menu')
+    markup.row(button1, button2)
+    markup.row(button3, button4)
+    markup.row(button5)
+
+    #bot output
+    bot.send_message(message.chat.id, 'take a look⬇️', reply_markup=markup)
+
+def screenshot_reciever(message):
+    if paypal in message.text:
+       bot.send_message(message.chat.id, "send an screenshot after you've completed  the transaction ")
+    else:
+        'i didnt understand that sorry'
+
+
+def return_to_main(message):
+    if message.text == '↩️ return to main menu':
+        welcome(message)
+    elif message.text == 'Another Button':
+        bot.send_message(message.chat.id, "Another button was pressed!")
+    else:
+        bot.send_message(message.chat.id, "I don't recognize that command.")
+#menu option 4
+def settingsChapter(message):
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    button1 = types.KeyboardButton('https://t.co/CAdC7lybpU')
+    button2 = types.KeyboardButton('⚙️ Настройки #2')
+    button3 = types.KeyboardButton('↩️ return to main menu')
+    markup.row(button1)
+    markup.row(button3)
+    if message.text == '↩️ return to main menu':
+        welcome(message)
+
+    else:
+        bot.send_message(message.chat.id, 'click on the link', reply_markup=markup)
+
+def payment_menu(message):
+    if message.text == "↩️ back to previous.":
+        payment_choices(message)
+    else:
+        payment_choices(message)
+
+
+#choices
+def infoChapter(message):
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    button1 = types.KeyboardButton('https://t.me/+Y64J1K4gHgQ1MWU0')
+    button2 = types.KeyboardButton('↩️ return to main menu')
+    markup.row(button1)
+    markup.row(button2)
+    bot.send_message(message.chat.id, "the preview group only contains a small amount of video's ", reply_markup=markup)
+
+def payment_choices(message):
+
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    button_1 = types.KeyboardButton("paypal")
+    button_2 = types.KeyboardButton('BTC')
+    button_3 = types.KeyboardButton('ETH')
+    button_4 = types.KeyboardButton('↩️ return to main menu')
+    markup.row(button_1, button_2)
+    markup.row(button_3, button_4)
+    if message.text == "BTC" or 'ETH':
+        bot.send_message(message.chat.id, "What's ur prefered method of payment ", reply_markup=markup)
+#def payment_links(message):
+    if message.text == "paypal":
+       print("pick ur prefered method of payment")
+    bot.send_message(message.chat.id,("pick"))
+
+print("running")
+bot.polling(none_stop=True)
